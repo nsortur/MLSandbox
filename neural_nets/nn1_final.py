@@ -59,8 +59,8 @@ def propagate(i):
 
     # derivative of error w.r.t weights, first layer
     layer2partials_matrix = np.column_stack([layer2partials[1:], layer2partials[1:], layer2partials[1:]])
-    feat_bias_matrix = np.row_stack([house_sk_train_bias[i,:],
-                                     house_sk_train_bias[i,:]])
+    feat_bias_matrix = np.row_stack([house_sk_train_bias[i, :],
+                                     house_sk_train_bias[i, :]])
     layer1partials = np.multiply(layer2partials_matrix, feat_bias_matrix)
 
     weights2 = weights2 - a * layer2partials
