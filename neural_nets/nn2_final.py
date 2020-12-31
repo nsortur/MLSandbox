@@ -87,7 +87,7 @@ def predict(j, pred_set):
 
     # calculate error
     sq_error = (np.square(z3 - house_sk_target[j]))
-    print(f'Prediction: {z3}, actual: {house_sk_target[j]}, error: {sq_error}')
+    print(f'Prediction: {z3}, actual: {house_sk_target[j]}, error: {0.5 * sq_error}')
     return sq_error
 
 
@@ -102,5 +102,5 @@ tot_err = 0
 for x in range(0, m_cv):
     tot_err += predict(x, house_sk_cv_bias)
 
-print('MSE training ($): ', tot_err_train / m_train)
-print('MSE CV ($): ', tot_err / m_cv)
+print('MSE training ($): ', tot_err_train / (2 * m_train))
+print('MSE CV ($): ', tot_err / (2 * m_cv))

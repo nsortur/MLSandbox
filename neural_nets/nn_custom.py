@@ -26,20 +26,26 @@ while True:
 
 # either dataset works
 house_sk_data = datasets.load_diabetes()
-m_train = 400
-m_cv = 442 - m_train
+m_train = 266
+m_cv = 133
+m_test = 43
 
 # training set
 house_sk_train = preprocessing.scale(house_sk_data.data[:m_train, :num_features])
 house_sk_train_bias = np.column_stack([np.ones((m_train, 1)), house_sk_train])
 
 # CV set
-house_sk_cv = preprocessing.scale(house_sk_data.data[m_train:, :num_features])
+house_sk_cv = preprocessing.scale(house_sk_data.data[m_train:(m_train+m_cv), :num_features])
 house_sk_cv_bias = np.column_stack([np.ones((m_cv, 1)), house_sk_cv])
+
+# test set
+house_sk_test = preprocessing.scale(house_sk_data.data[(m_train+m_cv):(m_train+m_cv+m_test), :num_features])
+house_sk_test_bias = np.column_stack([np.ones((m_test, 1)), house_sk_test])
 
 # target set
 house_sk_target = house_sk_data.target[:m_train]
-house_sk_cv_target = house_sk_data.target[m_train:]
+house_sk_cv_target = house_sk_data.target[m_train:(m_train+m_cv)]
+house_sk_test_target = house_sk_data.target[(m_train+m_cv):(m_train+m_cv+m_test)]
 
 # randomly initialize weights for first and second layer
 weights = np.random.rand(num_hid_units, num_features+1)
@@ -90,7 +96,7 @@ def predict(j, pred_set, target_set):
     z2 = np.dot(weights, np.transpose(pred_set[j, :]))
     # print('z2', z2)
     a2 = np.where(z2 > 0, z2, 0.01 * z2)
-    print('a2', a2)
+    # print('a2', a2)
     # add bias unit for second layer
     a2_bias = np.concatenate((np.ones(1), a2))
     # z for third layer, no final activation for now
@@ -98,7 +104,7 @@ def predict(j, pred_set, target_set):
 
     # calculate error
     sq_error = (np.square(z3 - target_set[j]))
-    print(f'Prediction: {z3}, actual: {target_set[j]}, error: {sq_error}')
+    print(f'Prediction: {z3}, actual: {target_set[j]}, error: {0.5 * sq_error}')
     return sq_error
 
 
@@ -113,5 +119,5 @@ tot_err = 0
 for x in range(0, m_cv):
     tot_err += predict(x, house_sk_cv_bias, house_sk_cv_target)
 
-print('MSE training ($): ', tot_err_train / m_train)
-print('MSE CV ($): ', tot_err / m_cv)
+print('MSE training ($): ', tot_err_train / (2 * m_train))
+print('MSE CV ($): ', tot_err / (2 * m_cv))
