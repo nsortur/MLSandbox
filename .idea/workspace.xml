@@ -20,7 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db322937-44d5-4461-a653-5f5036a3238e" name="Default Changelist" comment="finished stationary sample-average 10 armed bandit problem">
-      <change afterPath="$PROJECT_DIR$/img/stationary_10_arm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reinforcement_learning/sampl-avg-stationary-nonstationary.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reinforcement_learning/sampl-avg-bandit.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/reinforcement_learning/sampl-avg-bandit.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,7 +153,7 @@
       <workItem from="1618266054184" duration="1122000" />
       <workItem from="1618269064863" duration="325000" />
       <workItem from="1618328969329" duration="2048000" />
-      <workItem from="1618597551156" duration="1708000" />
+      <workItem from="1618597551156" duration="6997000" />
     </task>
     <task id="LOCAL-00001" summary="finished stationary sample-average 10 armed bandit problem">
       <created>1618330772017</created>
